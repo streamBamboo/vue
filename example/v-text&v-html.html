@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-text&v-html实例</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-text&v-html实例</h1>
+<hr>
+<div id="app">
+    <div>{{message}}</div>
+    <div v-text="message"></div>
+
+    <!--v-html 会很容易遭到黑客攻击，工作中尽量少用-->
+    <div v-html="message"></div>
+    <div v-html="todo"></div>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello World',
+            todo: '<h2>小渣渣</h2>'
+        },
+
+    });
+
+</script>
+
+</body>
+</html>

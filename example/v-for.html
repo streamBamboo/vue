@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for实例</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>v-for实例</h1>
+<hr>
+<!--需要哪个标签循环v-for就写到哪个标签上-->
+<div id="app">
+    <ul>
+        <li v-for="item in sortItems">{{item}}</li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(item, index) in sortStudents">
+            {{index + 1}}:{{item.name}}-{{item.age}}
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [23, 32, 424, 523, 5345, 2342, 35345],
+            students: [
+                {name: '小渣渣', age: 33},
+                {name: '小菜鸟', age: 22},
+                {name: '小渣菜', age: 23},
+                {name: '小菜渣', age: 24},
+                {name: '小哈蛤', age: 25},
+            ]
+        },
+        computed: {
+            sortItems: function () {
+                // return [1, 2, 3, 4, 5, 6, 7]
+                return this.items.sort(sortNumber)
+            },
+            sortStudents: function () {
+                return sortByKey(this.students, 'age')
+            }
+        }
+    });
+
+    //数字排序 这属于javascript的bug
+    function sortNumber(a, b) {
+        return a - b;
+    }
+
+    //数组对象方法排序
+    function sortByKey(array, key) {
+        return array.sort((a, b) => {
+            var x = a[key];
+            var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0))
+        })
+
+    }
+</script>
+
+</body>
+</html>
