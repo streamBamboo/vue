@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>option-computed</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>option-computed</h1>
+<hr>
+<div id="app">
+    <p>{{newPrice}}</p>
+    <ul>
+        <li v-for="(item, index) in reversNews" :key="index">
+            {{item.title}}-{{item.date}}
+        </li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var newList = [
+        {
+            title: '鹤顶红我都忘记都叫我的经济我',
+            date: '2019/3/30'
+        }, {
+            title: '单位及附加诶附近无法卫计局为金佛文件Fiona服务巨额偶见',
+            date: '2019/3/31'
+        }, {
+            title: '车分红高结婚佛教饿哦附近欧文次次都而无法访问发',
+            date: '2019/4/1'
+        },
+    ];
+    var app = new Vue({
+        el: '#app',
+        data: {
+            price: 100,
+            newList: newList,
+        },
+        computed: {
+            newPrice() {
+                return this.price = '￥' + this.price + '元';
+            },
+            reversNews() {
+                return this.newList.reverse()
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>

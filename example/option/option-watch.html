@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>option-watch</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+</head>
+<body>
+<h1>option-watch</h1>
+<hr>
+<div id="app">
+    <p>今天的温度：{{wendu}}℃</p>
+    <p>穿衣建议：{{chuanyi}}</p>
+    <p>
+        <button @click="add">升高温度</button>
+        <button @click="reduce">降低温度</button>
+    </p>
+</div>
+
+
+<script type="text/javascript">
+    var chuanyiarray = ['T恤短袖', '夹克长裙', '棉衣羽绒服'];
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            wendu: 14,
+            chuanyi: '夹克长裙'
+        },
+        methods: {
+            add() {
+                this.wendu += 5
+            },
+            reduce() {
+                this.wendu -= 5
+            }
+        },
+        watch:{
+            wendu(newVal, oldVal){
+                console.log(this)
+                if(newVal >= 26){
+                    this.chuanyi = chuanyiarray[0];
+                }else if(newVal < 26 && newVal > 0){
+                    this.chuanyi = chuanyiarray[1];
+                }else {
+                    this.chuanyi = chuanyiarray[2];
+                }
+            }
+        }
+
+    })
+
+    //这里用箭头函数  this指向不是当前挂载的app
+    /*app.$watch('wendu', function(newVal, oldVal){
+        console.log(newVal)
+        console.log(this)
+        if(newVal >= 26){
+            this.chuanyi = chuanyiarray[0];
+        }else if(newVal < 26 && newVal > 0){
+            this.chuanyi = chuanyiarray[1];
+        }else {
+            this.chuanyi = chuanyiarray[2];
+        }
+    })*/
+
+</script>
+
+</body>
+</html>
