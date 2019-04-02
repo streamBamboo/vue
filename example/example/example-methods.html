@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>example-methods</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>example-methods</h1>
+<hr>
+<div id="app">
+   {{message}}
+</div>
+
+
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+           message:'Hello World'
+        },
+        //jQuery只能放在mounted里面用
+        mounted: function (){
+            $('#app').html('我是小渣渣')
+        },
+        methods: {
+            add:function (){
+                console.log('调用了构造器内部的ADD方法！')
+            }
+        }
+    });
+
+    //外部调用构造器中的方法
+    app.add();
+
+
+</script>
+
+</body>
+</html>

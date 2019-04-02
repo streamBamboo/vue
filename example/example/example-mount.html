@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>example-mount</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="../../assets/js/vue.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>example-mount</h1>
+<hr>
+<div id="app">
+</div>
+<p>
+    <button onclick="desatroy()">卸载</button>
+</p>
+<p>
+    <button onclick="reload()">刷新</button>
+</p>
+<p>
+    <button onclick="tick()">更改数据</button>
+</p>
+
+
+<script type="text/javascript">
+
+    Vue.config.devtools = true
+    var jspang = Vue.extend({
+        template: `<p>{{message}}</p>`,
+        data: function () {
+            return {
+                message: 'Hello, I am 小渣渣'
+            }
+        },
+        mounted: function () {
+            console.log('mounted 被创建')
+        },
+        destroyed: function () {
+            console.log('destroyed 被创建')
+        },
+        updated: function () {
+            console.log('updated 被创建')
+        }
+    });
+
+    var vm = new jspang().$mount('#app');
+
+    //销毁
+    function desatroy() {
+        vm.$destroy()
+    }
+
+    //刷新
+    function reload() {
+        vm.$forceUpdate()
+    }
+
+    // 数据修改
+    function tick() {
+        vm.message ='update message info';
+        vm.$nextTick(function () {
+            console.log('message 更新后我被调用')
+        })
+    }
+</script>
+
+</body>
+</html>
