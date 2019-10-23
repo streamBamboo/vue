@@ -46,5 +46,16 @@
     <li><a href="./example/example/example-slot.html">example-slot</a></li>
 
 </ol>
+<script>
+    function curve(arr, amount){
+        for(var i = 0;i < arr.length; i++){
+            arr[i] += amount;
+        }
+    }
+
+    var grades = [1, 2, 3, 4, 5];
+    curve(grades, 5); // 跳跃
+    console.log(grades)
+</script>
 </body>
 </html>
